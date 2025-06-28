@@ -11,3 +11,10 @@ chrome://extensions/
 3. Enable Developer Mode on the top right
 4. Click "Load Unpacked" and select the repository folder
 5. Enjoy!
+
+________________________________________________________________________________
+
+Get the GROQ API Key from - https://console.groq.com/keys
+
+We are using the free meta-llama/llama-4-scout-17b-16e-instruct model. 
+You can update the model you want to use from background.js
