@@ -46,7 +46,7 @@ button:hover {
   border: 1px solid #ccc;
   padding: 8px;
   border-radius: 4px;
-  max-height: 200px;
+  min-height: 23em;
   overflow-y: auto;
   margin-bottom: 10px;
   background-color: #fefefe;
