@@ -5,6 +5,9 @@ const chatBox = document.getElementById("chat-box");
 const chatInput = document.getElementById("chat-input");
 const sendBtn = document.getElementById("sendBtn");
 
+const apiKeyInput = document.getElementById("apikey-input");
+const saveApiKeyBtn = document.getElementById("save-apikey-btn");
+
 let messages = [];
 
 
@@ -45,6 +48,23 @@ function stopTimer() {
   clearInterval(timerInterval);
   document.getElementById('timer').textContent = "00:00";
 }
+
+saveApiKeyBtn.addEventListener("click", () => {
+  const key = apiKeyInput.value.trim();
+  if (key) {
+    chrome.storage.local.set({ openaiKey: key }, () => {
+      alert("API Key saved.");
+    });
+  }
+});
+
+// Load existing key into field (optional)
+chrome.storage.local.get(["openaiKey"], (result) => {
+  if (result.openaiKey) {
+    apiKeyInput.value = result.openaiKey;
+  }
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('startBtn');

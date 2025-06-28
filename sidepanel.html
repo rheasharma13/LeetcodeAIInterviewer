@@ -85,6 +85,17 @@
     #sendBtn {
       padding: 6px 10px;
     }
+
+    #apikey-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    #apikey-input {
+      flex: 1;
+      padding: 6px;
+    }
   </style>
 </head>
 <body>
@@ -93,6 +104,13 @@
   <div id="timer">00:00</div>
   <button id="startBtn">Begin Interview</button>
   <button id="resetBtn">Reset</button>
+
+  <h4>API Key : </h4><a href="https://console.groq.com/keys">Use Link</a>
+
+  <div id="apikey-row">
+    <input type="password" id="apikey-input" placeholder="Enter GROQ API key" />
+    <button id="save-apikey-btn">Save</button>
+  </div>
 
   <h4  style="display:none">Problem</h4>
   <div id="pageContent" style="display:none"></div>
