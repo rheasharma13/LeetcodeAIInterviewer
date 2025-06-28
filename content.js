@@ -15,7 +15,6 @@
 
   // Save to storage
   chrome.storage.local.set({ leetcodeProblem: problemData }, () => {
-    console.log("LeetCode problem saved");
   });
 
   // Also send it to the popup (if open)
@@ -26,7 +25,7 @@
 function injectSummaryToProblemPage(summaryText) {
   const problemDesc = document.querySelector('div.elfjS[data-track-load="description_content"]');
   if (!problemDesc) {
-    console.error("❌ Problem description not found");
+    console.error("Problem description not found");
     return;
   }
   problemDesc.innerHTML = "";

@@ -17,7 +17,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         alert("No API key set. Please enter it in the extension.");
         return;
       }
-      console.log('api key', openaiKey);
 
       const prompt = `Problem:\n\n${message.content}`;
 
@@ -39,7 +38,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       .then(res => res.json())
       .then(data => {
         const summary = data.choices?.[0]?.message?.content || 'No summary returned.';
-        console.log('OpenAI data:', data);
         sendResponse({ success: true, summary });
       })
       .catch(error => {
@@ -88,7 +86,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       .then(res => res.json())
       .then(data => {
         const reply = data.choices?.[0]?.message?.content || 'No reply returned.';
-        console.log('OpenAI reply data:', data);
         sendResponse({ success: true, reply });
       })
       .catch(error => {

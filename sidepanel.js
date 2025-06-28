@@ -111,8 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, () => {
         if (chrome.runtime.lastError) {
           console.error('Script injection failed:', chrome.runtime.lastError.message);
-        } else {
-          console.log('Content script injected');
         }
       });
     });
@@ -151,9 +149,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         summaryBox.textContent = `${response.error}`;
       }
       
-      chrome.storage.local.set({ leetcodeProblemSummary: response.summary }, () => {
-        console.log("LeetCode Summary saved");
-      });
+      chrome.storage.local.set({ leetcodeProblemSummary: response.summary }, () => {});
       systemMessage = `${AssistantChatSystemPrompt}\n\nProblem Statement:\n\n${content}`
 
       addMessage('system', systemMessage);
@@ -172,8 +168,6 @@ function saveMessages(messages) {
 function loadMessages() {
   chrome.storage.local.get('chatMessages', (data) => {
     messages = data.chatMessages;
-    console.log('messages 1', messages);
-    console.log('chat messages loaded', messages);
     for (const msg of messages) {
       showMessage(msg.role, msg.content);
     }  
@@ -189,7 +183,6 @@ function addMessage(role, content) {
   if (role !== 'thinking') {
     messages.push({ role, content });
     saveMessages(messages);
-    console.log('messages stored on local', messages);
   }
 }
 
@@ -227,7 +220,6 @@ chatInput.addEventListener("keydown", e => {
 });
 
 function init() {
-  console.log('dom content loaded');
   messages = loadMessages();
 }
 
