@@ -4,6 +4,7 @@ let timerInterval;
 const chatBox = document.getElementById("chat-box");
 const chatInput = document.getElementById("chat-input");
 const sendBtn = document.getElementById("sendBtn");
+const sendCodeBtn = document.getElementById("sendCodeBtn");
 
 const apiKeyInput = document.getElementById("apikey-input");
 const saveApiKeyBtn = document.getElementById("save-apikey-btn");
@@ -217,6 +218,32 @@ async function sendMessage() {
 sendBtn.addEventListener("click", sendMessage);
 chatInput.addEventListener("keydown", e => {
   if (e.key === "Enter") sendMessage();
+});
+
+sendCodeBtn.addEventListener("click", () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    chrome.tabs.sendMessage(tabs[0].id, { type: "EXTRACT_CODE" }, res => { 
+      chrome.storage.local.get('leetcodeProblemCode', (data) => {
+        if (data.leetcodeProblemCode) {
+          const code = data.leetcodeProblemCode;
+          const userText = chatInput.value.trim();
+          console.log('code', code, userText);
+          addMessage("user", `${userText}\n\nCode:\n\n${code}`);
+          chatInput.value = "";
+
+          addMessage("thinking", "<em>Thinking...</em>");
+
+          chrome.runtime.sendMessage({
+            type: "CHATGPT_MESSAGE",
+            messages
+          }, (response) => {
+            chatBox.lastChild.remove(); // remove "Thinking..."
+            addMessage("assistant", response.reply);
+          });
+        }
+      });
+    });
+  });
 });
 
 function init() {

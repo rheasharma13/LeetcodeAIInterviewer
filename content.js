@@ -14,8 +14,7 @@
   const problemData = extractLeetcodeProblem();
 
   // Save to storage
-  chrome.storage.local.set({ leetcodeProblem: problemData }, () => {
-  });
+  chrome.storage.local.set({ leetcodeProblem: problemData }, () => {});
 
   // Also send it to the popup (if open)
   chrome.runtime.sendMessage({ type: "LEETCODE_PROBLEM", data: problemData });
@@ -69,3 +68,27 @@ function hideExtraElements() {
     tagsDiv.style.display = "none";
   }
 }
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+
+  function extractLeetcodeCode() {
+    const lines = document.querySelectorAll('.view-line');
+    const codeLines = [];
+
+    lines.forEach(line => {
+      codeLines.push(line.innerText);
+    });
+
+    return codeLines.join('\n');
+  }
+  if (msg.type === "EXTRACT_CODE") {
+    console.log('in extract code');
+    const code = extractLeetcodeCode();
+    console.log('parsed extract code', code);
+    chrome.storage.local.set({ leetcodeProblemCode: code }, () => {});
+    sendResponse({ code });
+
+    console.log('response sent');
+    return true;
+  }
+});

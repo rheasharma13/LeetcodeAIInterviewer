@@ -80,6 +80,10 @@ button:hover {
   padding: 6px 10px;
 }
 
+#sendCodeBtn {
+  padding: 6px 10px;
+}
+
 #apikey-row {
   display: flex;
   gap: 6px;
