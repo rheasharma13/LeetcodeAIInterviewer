@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LeetCode AI Interviewer</title>
+  <script src="marked.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 12px;
+      width: 360px;
+      box-sizing: border-box;
+    }
+
+    h2, h4 {
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    #timer {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    button {
+      margin-right: 8px;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      border: none;
+      background-color: #0366d6;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #024b9c;
+    }
+
+    #pageContent, #summaryContent {
+      white-space: pre-wrap;
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 4px;
+      background: #f9f9f9;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    #chat-box {
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      background-color: #fefefe;
+    }
+
+    .message {
+      margin-bottom: 8px;
+    }
+
+    .user {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .bot {
+      color: #0366d6;
+    }
+
+    #input-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    #chat-input {
+      flex: 1;
+      padding: 6px;
+      font-size: 14px;
+    }
+
+    #sendBtn {
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>LeetCode AI Interviewer</h2>
+
+  <div id="timer">00:00</div>
+  <button id="startBtn">Begin Interview</button>
+  <button id="resetBtn">Reset</button>
+
+  <h4  style="display:none">Problem</h4>
+  <div id="pageContent" style="display:none"></div>
+
+  <h4  style="display:none">Summary</h4>
+  <div id="summaryContent" style="display:none"></div>
+
+  <h2>AI Assistant</h2>
+  <div id="chat-box"></div>
+
+  <div id="input-row">
+    <input type="text" id="chat-input" placeholder="Ask something..." />
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <script src="sidepanel.js" defer></script>
+</body>
+</html>
