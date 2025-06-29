@@ -1,8 +1,9 @@
+Demo: https://youtu.be/54PZXUou2YQ?feature=shared
 Steps to Run the extension -
 
 1. Clone the repo -
 ```
-git clone git@github.com:rheasharma13/LeetcodeAIInterviewer.git
+git clone https://github.com/rheasharma13/LeetcodeAIInterviewer.git
 ```
 2. Go to Chrome Extensions Settings
 ```
